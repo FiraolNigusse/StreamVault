@@ -1,0 +1,4 @@
+firebase-credentials.json
+.env
+db.sqlite3
+venv/
