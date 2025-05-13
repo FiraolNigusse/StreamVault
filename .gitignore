@@ -2,3 +2,4 @@ streamvault-backend/firebase/firebase-credentials.json
 streamvault-backend/.env
 streamvault-backend/db.sqlite3
 streamvault-backend/venv/
+node_modules/
