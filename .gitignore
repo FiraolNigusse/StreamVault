@@ -3,3 +3,6 @@ streamvault-backend/.env
 streamvault-backend/db.sqlite3
 streamvault-backend/venv/
 node_modules/
+.env
+dist/
+firebase-debug.log

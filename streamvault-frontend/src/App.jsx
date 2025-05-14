@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-
+import ProtectedRoute from "./components/ProtectedRoute";
+import DashboardPage from "./pages/DashboardPage";
 
 function Home() {
   return (
@@ -21,19 +22,30 @@ function Home() {
     </div>
   );
 }
+
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/upload" element={<UploadPage />} />
         <Route path="/video/:id" element={<VideoPreviewPage />} />
         <Route path="/document-preview/:id" element={<DocumentViewPage />} />
         <Route path="/video-preview" element={<VideoPreviewPage />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
 
+        {/* Protected routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
