@@ -6,3 +6,6 @@ node_modules/
 .env
 dist/
 firebase-debug.log
+# Ignore Firebase config
+streamvault-frontend/src/firebase.js
+.env
