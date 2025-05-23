@@ -1,7 +1,9 @@
+from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
+from .models import UploadedFile
 
 from .models import UploadedFile
 from .serializers import UploadedFileSerializer
@@ -38,3 +40,13 @@ class FileListView(APIView):
         files = UploadedFile.objects.all().order_by('-uploaded_at')
         serializer = UploadedFileSerializer(files, many=True)
         return Response(serializer.data)
+    
+@api_view(['DELETE'])
+def delete_file(request, file_id):
+    try:
+        file = UploadedFile.objects.get(id=file_id)
+        file.file.delete(save=False)  # This deletes the file from storage
+        file.delete()  # This deletes the record from the database
+        return Response({"message": "File deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+    except UploadedFile.DoesNotExist:
+        return Response({"error": "File not found."}, status=status.HTTP_404_NOT_FOUND)

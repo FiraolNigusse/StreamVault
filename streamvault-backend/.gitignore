@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Django
+media/uploads/
+db.sqlite3
+
+# Environment
+.env
+venv/
+
+# Firebase
+firebase/firebase-credentials.json
+
+# Logs
+*.log
